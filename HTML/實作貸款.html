@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <font face="微軟正黑體" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S"
+        crossorigin="anonymous">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-9 text-center">
+                <h3>貸款試算</h3>
+                <br>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="txtNetIncome" class="col-2 col-form-label text-right">貸款金額</label>
+            <div class="input-group col-6">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                </div>
+                <input type="text" class="form-control" id="txtNetIncome" />
+            </div>
+            <div class="col-1">
+                <button class="btn btn-primary" id="con">
+                    <i class="fas fa-calculator"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="txtTaxRate" class="col-3 col-form-label text-right">年利率</label>
+        <div class="input-group col-5">
+            <input type="text" class="form-control" maxlength="5" id="txtTaxRate" />
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <i class="fas fa-percent"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="txtTaxAdjustment" class="col-3 col-form-label text-right">月數</label>
+        <div class="input-group col-5">
+            <div class="input-group-prepend">
+            </div>
+            <input type="text" class="form-control" id="txtTaxAdjustment" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="txtTaxAmount" class="col-3 col-form-label text-right">每月償還金額(本金加利息)</label>
+        <div class="input-group col-5">
+            <div class="input-group-prepend">
+                <div class="input-group-text">
+                    <i class="fas fa-dollar-sign"></i>
+                </div>
+            </div>
+            <input type="text" class="form-control" readonly id="txtTaxAmount" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="txtTaxAmount" class="col-3 col-form-label text-right">總償還金額</label>
+        <div class="input-group col-5">
+            <div class="input-group-prepend">
+                <div class="input-group-text">
+                    <i class="fas fa-dollar-sign"></i>
+                </div>
+            </div>
+            <input type="text" class="form-control" readonly id="txtTaxLoan" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="txtTaxAmount" class="col-3 col-form-label text-right">每月利息</label>
+        <div class="input-group col-5">
+            <div class="input-group-prepend">
+                <div class="input-group-text">
+                    <i class="fas fa-dollar-sign"></i>
+                </div>
+            </div>
+            <input type="text" class="form-control" readonly id="txtTaxRat" />
+        </div>
+    </div>
+
+    <script>
+        var con = document.getElementById("con");
+        con.onclick = function () {
+            var yAmount = document.getElementById("txtNetIncome").value;
+            var yLoan = document.getElementById("txtTaxAdjustment").value;
+            var yRate = document.getElementById("txtTaxRate").value;
+
+            console.log(yAmount + "　" + yLoan + "　" + yRate);
+
+            var LoanCalculator = function (yRate, yLoan, yAmount) {
+                var _mRate = yRate / 12; // 年利率 / 12
+                var _amount = yAmount;   // 金額
+                var _mLoan = yLoan * 12; // 年數 / 12
+
+                var _aRate = ((Math.pow(1 + _mRate, _mLoan)) * _mRate) / ((Math.pow(1 + _mRate, _mLoan)) - 1);
+
+                this.getMonthlyPayAmount = function () {
+                    return Math.round(_amount * _aRate);
+                }
+
+                this.getTotalFinalPayAmount = function () {
+                    return Math.round(this.getMonthlyPayAmount() * _mLoan);
+                }
+
+                this.getMonthlyPayRateAmount = function () {
+                    return Math.round(this.getMonthlyPayAmount() - (_amount / _mLoan));
+                }
+            }
+
+            var calculator = new LoanCalculator(yRate, yLoan, yAmount);
+
+            document.getElementById("txtTaxAmount").value = (calculator.getMonthlyPayAmount());
+            document.getElementById("txtTaxLoan").value = (calculator.getTotalFinalPayAmount());
+            document.getElementById("txtTaxRat").value = (calculator.getMonthlyPayRateAmount());
+
+        }
+
+    </script>
+</body>
+
+</html>

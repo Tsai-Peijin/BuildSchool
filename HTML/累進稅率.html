@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <font face="微軟正黑體" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container"  style="margin:0px auto;">
+        <div class="row mt-5">
+            <div class="col-9 text-center">
+                <h3>稅額試算</h3>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="txtNetIncome" class="col-2 col-form-label text-right">所得淨額</label>
+            <div class="input-group col-6">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                </div>
+                <input type="text" class="form-control" id="txtNetIncome" />
+            </div>
+            <div class="col-1">
+                <button class="btn btn-primary" id="con">
+                    <i class="fas fa-calculator"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="txtTaxRate" class="col-3 col-form-label text-right">稅率</label>
+        <div class="input-group col-5">
+            <input type="text" class="form-control" readonly maxlength="5" id="txtTaxRate" />
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <i class="fas fa-percent"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="txtTaxAdjustment" class="col-3 col-form-label text-right">累進差額</label>
+        <div class="input-group col-5">
+            <div class="input-group-prepend">
+                <div class="input-group-text">
+                    <i class="fas fa-dollar-sign"></i>
+                </div>
+            </div>
+            <input type="text" class="form-control" readonly id="txtTaxAdjustment" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="txtTaxAmount" class="col-3 col-form-label text-right">應納稅額</label>
+        <div class="input-group col-5">
+            <div class="input-group-prepend">
+                <div class="input-group-text">
+                    <i class="fas fa-dollar-sign"></i>
+                </div>
+            </div>
+            <input type="text" class="form-control" readonly id="txtTaxAmount" />
+        </div>
+    </div>
+
+    <script>
+        var con = document.getElementById("con");
+        con.onclick = function () {
+            var input = document.getElementById("txtNetIncome").value;
+            console.log(input);
+
+            var taxArray = [
+                { rate: 0.05, amountFrom: 0, amountTo: 540000, dif: 0 },
+                { rate: 0.12, amountFrom: 540000, amountTo: 1210000, dif: 37800 },
+                { rate: 0.20, amountFrom: 1210000, amountTo: 2420000, dif: 134600 },
+                { rate: 0.30, amountFrom: 2420000, amountTo: 4530000, dif: 376600 },
+                { rate: 0.40, amountFrom: 4530000, amountTo: 10310000, dif: 829600 },
+                { rate: 0.45, amountFrom: 10310000, amountTo: 0, dif: 1345100 }
+            ];
+
+            var r = 0.0;
+            var dif = 0;
+            for (var item of taxArray) {
+                if (item.amountFrom > item.amountTo) {
+                    if (input >= item.amountFrom) {
+                        r = item.rate;
+                        dif = item.dif;
+                        break;
+                    }
+                    else {
+                        r = -1;
+                        dif = -1;
+                        break;
+                    }
+                }
+                else {
+                    if (input >= item.amountFrom && input < item.amountTo) {
+                        r = item.rate;
+                        dif = item.dif;
+                        break;
+                    }
+                }
+            }
+
+            document.getElementById("txtTaxRate").value = r;
+            document.getElementById("txtTaxAdjustment").value = dif;
+            document.getElementById("txtTaxAmount").value = ((input * r) - dif);
+
+        }
+
+
+    </script>
+
+</body>
+
+</html>

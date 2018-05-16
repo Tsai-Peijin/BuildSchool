@@ -1,0 +1,51 @@
+<html>
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <font face="微軟正黑體" />
+</head>
+
+<body>
+    <p></p>
+    <br>
+    <button id="stoptime">Stop</button>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script>
+        $(function () {
+            var timer = window.setInterval(function () {
+                var date = new Date();
+                var year = date.getFullYear();
+                var month = date.getMonth() + 1;
+                var day = date.getDate();
+                var hours = date.getHours();
+                if (hours < 10) {
+                    hours = "0" + hours;
+                }
+                var min = date.getMinutes();
+                if (min < 10) {
+                    min = "0" + min;
+                }
+                var sec = date.getSeconds();
+                if (sec < 10) {
+                    sec = "0" + sec;
+                }
+
+                /*var d = new Date();
+                var t = d.toLocaleTimeString();
+                console.log(t);*/
+                $("p")
+                    .text("現在時間：" + year + "/" + month + "/" + day + " " + hours + ":" + min + ":" + sec);
+
+            }, 1000);
+
+            $("#stoptime").click(function () {
+                clearInterval(timer);
+            });
+        });
+    </script>
+</body>
+
+</html>

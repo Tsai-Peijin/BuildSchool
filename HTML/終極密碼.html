@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>終極密碼</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <font face="微軟正黑體" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container text-center">
+        <br>
+        <h3 align="center">終極密碼</h3>
+        <h5>(！！！你有10次機會！！！)</h5>
+        <br>
+        <button type="button" class="btn mr-3" id="start">開始遊戲</button>
+        <br>
+        <input type="text" name="math" id="prompt" class="mt-3" value="0 ~ 100" style="width:250px; text-align:center;" readonly>
+        <br> 輸入：
+        <input type="text" name="math" id="math" class="mt-3">
+
+        <div class="row mb-3 mt-3">
+            <div class="col text-center">
+                <button type="button" class="btn btn-outline-info btn-lg mr-3">1</button>
+                <button type="button" class="btn btn-outline-info btn-lg mr-3">2</button>
+                <button type="button" class="btn btn-outline-info btn-lg mr-3">3</button>
+            </div>
+
+        </div>
+        <div class="row mb-3 ">
+            <div class="col text-center">
+                <button type="button" class="btn btn-outline-info btn-lg mr-3">4</button>
+                <button type="button" class="btn btn-outline-info btn-lg mr-3">5</button>
+                <button type="button" class="btn btn-outline-info btn-lg mr-3">6</button>
+            </div>
+        </div>
+        <div class="row mb-3 ">
+            <div class="col text-center">
+                <button type="button" class="btn btn-outline-info btn-lg mr-3">7</button>
+                <button type="button" class="btn btn-outline-info btn-lg mr-3">8</button>
+                <button type="button" class="btn btn-outline-info btn-lg mr-3">9</button>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col text-center">
+                <button type="button" class="btn btn-outline-danger btn-lg mr-3" id="clean">
+                    <i class="fas fa-times"></i>
+                </button>
+                <button type="button" class="btn btn-outline-info btn-lg mr-3">0</button>
+                <button type="button" class="btn btn-outline-success btn-lg mr-3" id="result">
+                    <i class="fas fa-check"></i>
+                </button>
+            </div>
+        </div>
+
+        <script>
+            var buttons = document.getElementsByTagName("button");
+
+            for (var i = 0; i < buttons.length; i++) {
+                var button = buttons[i];
+                button.onclick = function () {
+                    var btn = event.srcElement;
+                    document.getElementById("math").value += btn.innerHTML;
+                }
+            }
+
+            var Clean = document.getElementById("clean");
+            Clean.onclick = function () {
+                document.getElementById("math").value = "";
+            }
+
+            var answer = Math.floor(Math.random() * 100);
+
+            var start = document.getElementById("start");
+            start.onclick = function () {
+                console.log(answer);
+            }
+
+            var result = document.getElementById("result");
+            var time = 10, T = 0;
+            var min = 0, max = 100;
+            result.onclick = function () {
+                time -= 1;
+                T += 1;
+                var input = document.getElementById("math").value;
+                if (time == 0 && input == answer) {
+                    document.getElementById("prompt").value = input + "  猜了 " + T + " 次！" + " 你贏了！";
+                    console.log(input + "  猜了 " + T + " 次！" + " 你贏了！");
+                }
+                else if (time == 0) {
+                    document.getElementById("prompt").value = input + "  猜了 " + T + " 次！" + " 你輸了！";
+                    console.log(input + "  猜了 " + T + " 次！" + " 你輸了！");
+                }
+                else {
+                    if (input == answer) {
+                        document.getElementById("prompt").value = input + " 恭喜你贏了！ " + "  猜了 " + T + " 次！";
+                        console.log(input + " 恭喜你贏了！" + " 猜了 " + T + " 次！");
+                    }
+                    else if (min < input && input < answer) {
+                        min = input;
+                        document.getElementById("prompt").value = input + " ~ " + max;
+                        console.log(input + "  猜了 " + T + " 次！");
+                    }
+                    else if (answer < input && input < max) {
+                        max = input;
+                        document.getElementById("prompt").value = min + " ~ " + input;
+                        console.log(input + "  猜了 " + T + " 次！");
+                    }
+                    else {
+                        console.log(input + "  猜了 " + T + " 次！");
+                    }
+                }
+            }
+        </script>
+</body>
+
+</html>

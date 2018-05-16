@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>猜數字(1A2B)</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <font face="微軟正黑體" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <br>
+    <h2 align="center">猜數字</h2>
+    <div class="container">
+        <br>
+        <div class="row">
+            <div class="col offset-3">
+                <button type="button" class="btn btn-block btn-lg" id="start">開始</button>
+            </div>
+            <div class="col">
+                <button type="button" class="btn btn-block btn-lg" id="giveup">放棄重來</button>
+            </div>
+            <div class="col">
+                <button type="button" class="btn btn-block btn-lg" id="ans">看答案</button>
+            </div>
+            <div class="col-3">
+
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col text-center offset-3">
+                <ul id="text" class="list-group" style="height:300px;">
+                </ul>
+            </div>
+            <div class="col-3">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col offset-3">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">你的答案</span>
+                    </div>
+                    <input type="text" class="form-control" aria-describedby="basic-addon1" id="input">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary btn-lg" type="button" id="guess">猜</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+            </div>
+        </div>
+    </div>
+
+    
+    <script> 
+        var start = document.getElementById("start");
+        start.onclick = function () {
+            var a = new Array(4);
+            do {
+                for (var i = 0; i < 4; i++) {
+                    a[i] = parseInt(Math.random() * 10).toString();
+                }
+                var rpt = false;
+                for (var i = 0; i < 4; i++) {
+                    for (var j = 0; j < 4; j++) {
+                        if (i != j && a[i] == a[j]) {
+                            rpt = true;
+                        }
+                    }
+                }
+            } while (rpt)
+            console.log(a[0] + a[1] + a[2] + a[3]);
+
+            var giveup = document.getElementById("giveup");
+            giveup.onclick = function () {
+                document.getElementById("input").value = "";
+                num = "";
+                var newlist = document.createElement("ul");
+                document.getElementById("text").innerHTML = '';
+            }
+
+            var ans = document.getElementById("ans");
+            ans.onclick = function () {
+                alert("答案： " + a[0] + a[1] + a[2] + a[3]);
+            }
+
+
+
+            var guess = document.getElementById("guess");
+            guess.onclick = function () {
+                var input = document.getElementById("input").value;
+
+                var A = 0, B = 0;
+
+                for (var i = 0; i < 4; i++) {
+                    for (var j = 0; j < 4; j++) {
+                        if (a[i] == input[j]) {
+                            if (i == j) {
+                                A += 1;
+                            }
+                            else {
+                                B += 1;
+                            }
+                        }
+                    }
+                }
+
+                var li = document.createElement("li");
+                li.className = "list-group-item";
+
+                var span = document.createElement("span");
+                span.className = "badge badge-danger";
+                span.innerText = A + "A" + B + "B ";
+
+                var p = document.createElement("span");
+                p.innerText = "  " + input;
+
+                if (A == 4) {
+                    alert("恭喜你獲勝了！");
+                    span.className = "badge badge-success";
+                }
+
+                document.getElementById("text").appendChild(li).appendChild(span);
+                document.getElementById("text").appendChild(li).appendChild(p);
+            }
+        }
+
+    </script>
+</body>
+
+</html>
