@@ -1,0 +1,150 @@
+body{ /*基本型大小、行高、字型、顏色*/
+    font-size: 15px;
+    line-height: 1.4em;
+    font-family: sans-serif;
+    color: #333;
+}
+a{
+    color: #009ced;
+    text-decoration: none;
+}
+a:hover{ /*滑鼠移上去會變色、有底線*/
+    color: #008ad1;
+    text-decoration: underline;
+}
+.container{
+    width: 940px;
+    margin: 0 auto;
+}
+
+h1.logo a{ /*選取器寫在a 連結上，方便使用者點圖就能回首頁*/
+    display: block; /*將連結區塊化*/
+    width: 376px; /*指定尺寸與圖檔寬高相同*/
+    height: 81px;
+    background: url('../images/logo-5.png') no-repeat;
+    white-space: nowrap; /*阻止文字內容在寬度不足時換行*/
+    text-indent: 110%; /*把文字縮排至範圍外*/
+    overflow: hidden; /*隱藏超出範圍的內容*/
+}
+.header .container{ /*將置中容器設定成副標題絕對定位時的定位基準*/
+    position:relative;
+}
+.header .slogan{
+    position: absolute;
+    top: 20px; /*將副標題絕對定位於置中容器的右側，距離上方20px*/
+    right: 0;
+}
+.slogan strong{
+    font-size: 1.5em; /*更加強調<strong> 中的文字*/
+    color: blue;
+}
+.main-menu{ /*將外層容器加上背景色，並使主選單下方有適當的留白*/
+    background: #4fa3e7;
+    margin-bottom: 20pt;
+    overflow: auto;
+}
+.main-menu ul{ /*移除項目清單預設的樣式和留白*/
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.main-menu ul li{ /*使清單項目都向左浮動，因為共有四個連結所以每個寬25%*/
+    float: left;
+    width: 25%;
+}
+.main-menu ul li a{ /*將連結區塊化並加上適當的padding 撐起高度，並移除底線效果*/
+    display: block;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 18px;
+    color: #fff;
+    text-decoration: none;
+}
+.main-menu ul li a:hover{ /*讓連結在滑鼠移上時變更背景色*/
+    background: blue;
+}
+.main{ /*主要內容區塊設定寬度700px 並向左浮動，加上底部留白內距*/
+    width: 700px;
+    float: left;
+    padding-bottom: 30px;
+}
+.side{ /*側欄區塊設定寬度220px 並向右浮動，兩個區塊分向左右浮動時可各自緊貼左/右側，達成並排效果*/
+    width: 220px;
+    float: right;
+    padding-bottom: 30px;
+}
+.footer{ /*頁尾區塊加上背景色、調整文字顏色，並指定文字置中對齊，加上上下留白內距*/
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0 40px;
+    clear: both; /*清除浮動*/
+}
+.headline{ /*區塊基本樣式，包含邊框、邊界與內距的留白等*/
+    border: #ddd 1px solid;
+    padding: 10px 10px 10px 220px; /*變更左側內距使內容距左側220px，才不會和圖片重疊，且距離圖片有適當的留白*/
+    margin-bottom: 20px;
+    font-size: 16px;
+    line-height: 1.5em;
+    position: relative; /*讓容器成為絕對定位元素的定位基準*/
+    min-height: 150px; /*指定最小高度，避免內容太短時區塊高度小於圖片高度而造成版面錯誤*/
+}
+.headline img{ /*使用絕對定位將圖片放在距離左側10px 的位置*/
+    position: absolute;
+    left: 10px;
+}
+.header h2{ /*移除標題上方邊界的留白*/
+    margin-top: 0;
+    font-size: 1.5em;
+}
+.headline .more{ /*將more 連結靠右對齊*/
+    display: block;
+    text-align: right;
+}
+ul.news-list{ /*移除項目清單的預設樣式和留白*/
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.news{ /*提供單則新聞的基本樣式*/
+    box-sizing: border-box;/*改變box-sizing 的值*/
+    width: 340px; /*指定計算好的寬度*/
+    height: 250px; /*目前假資料的高度都一樣，但仍應該設定一個適合的高度以避免置入真實資料時排列起來區塊大小不一*/
+    overflow:hidden;
+    border: #ddd 1px solid;
+    padding: 10px;
+    margin-bottom: 20px; 
+    float: left; /*指定向左浮動*/
+}
+.news:nth-child(odd){ /*使用這個pseudo-class 可以只選取序列中「奇數」的.news*/
+    margin-right: 20px; /*指定每則新聞右側都留白20px*/
+}
+.news h2{
+    margin-top: 0;
+    line-height: 1.2em;
+}
+.news .img{ /*將圖片向左浮動，可達成文繞圖的效果*/
+    float: left;
+    margin: 0 10px 10px 0;
+}
+
+.side-title{ /*標題加上裝飾線*/
+    padding-bottom: 4px;
+    border-bottom: #4fa3e7 4px solid;
+}
+.top-news{
+    padding-left: 30px;
+}
+.top-news li{
+    line-height: 1.5em;
+    padding-bottom: 5px;
+}
+a.back-top{
+    position: fixed; /*以視窗做為定位基準*/
+    bottom: 150px; /*距離底部150px*/
+    right: 0; /*緊貼右側*/
+    background: #4fa3e7;
+    padding: 10px 20px;
+    font-size: 2em;
+    color: #fff;
+}
