@@ -7,6 +7,9 @@
 #### \# 網站刻板練習
 ![Screenshot](https://raw.githubusercontent.com/Tsai-Peijin/BuildSchool2018/master/HTML/image/paw-news.png)  
 
+#### \# Bootstrap刻板練習
+![Screenshot](https://buildschooltest.azurewebsites.net/HTML/%E5%88%BB%E6%9D%BF%E7%B7%B4%E7%BF%92/Wireframe.html)  
+
 #### \# 溫度轉換器
 ![Screenshot](https://github.com/Tsai-Peijin/BuildSchool2018/blob/master/HTML/image/%E6%BA%AB%E5%BA%A6%E8%BD%89%E6%8F%9B%E5%99%A8.png?raw=true)  
 
