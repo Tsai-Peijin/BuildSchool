@@ -16,6 +16,9 @@
 #### \# 終極密碼
 ![Screenshot](https://github.com/Tsai-Peijin/BuildSchool2018/blob/master/HTML/image/%E7%B5%82%E6%A5%B5%E5%AF%86%E7%A2%BC.png?raw=true)  
 
+#### \# 打地鼠
+![Screenshot](https://buildschooltest.azurewebsites.net/HTML/%E6%89%93%E5%9C%B0%E9%BC%A0/)  
+
 #### \# 累進稅率
 ![Screenshot](https://github.com/Tsai-Peijin/BuildSchool2018/blob/master/HTML/image/%E7%B4%AF%E9%80%B2%E7%A8%85%E7%8E%87.png?raw=true)  
 
