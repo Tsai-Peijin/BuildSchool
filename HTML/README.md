@@ -8,7 +8,7 @@
 ![Screenshot](https://raw.githubusercontent.com/Tsai-Peijin/BuildSchool2018/master/HTML/image/paw-news.png)  
 
 #### \# Bootstrap刻板練習
-![Screenshot](https://buildschooltest.azurewebsites.net/HTML/%E5%88%BB%E6%9D%BF%E7%B7%B4%E7%BF%92/Wireframe.html)  
+![Screenshot](https://github.com/Tsai-Peijin/BuildSchool2018/blob/master/HTML/image/Wireframe.png?raw=true)  
 
 #### \# 溫度轉換器
 ![Screenshot](https://github.com/Tsai-Peijin/BuildSchool2018/blob/master/HTML/image/%E6%BA%AB%E5%BA%A6%E8%BD%89%E6%8F%9B%E5%99%A8.png?raw=true)  
@@ -20,7 +20,7 @@
 ![Screenshot](https://github.com/Tsai-Peijin/BuildSchool2018/blob/master/HTML/image/%E7%B5%82%E6%A5%B5%E5%AF%86%E7%A2%BC.png?raw=true)  
 
 #### \# 打地鼠
-![Screenshot](https://buildschooltest.azurewebsites.net/HTML/%E6%89%93%E5%9C%B0%E9%BC%A0/)  
+![Screenshot](https://github.com/Tsai-Peijin/BuildSchool2018/blob/master/HTML/image/%E6%89%93%E5%9C%B0%E9%BC%A0.png?raw=true)  
 
 #### \# 累進稅率
 ![Screenshot](https://github.com/Tsai-Peijin/BuildSchool2018/blob/master/HTML/image/%E7%B4%AF%E9%80%B2%E7%A8%85%E7%8E%87.png?raw=true)  
