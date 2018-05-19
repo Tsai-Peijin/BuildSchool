@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!--<link rel="icon" href="../../favicon.ico">-->
+
+    <title>Slot</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="stylesheets/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        * {
+            /*所有元素適用*/
+            box-sizing: border-box;
+            width: 100%;
+        }
+
+        .row-with-gap {
+            margin-bottom: 10px;
+        }
+
+        .img-responsive {
+            border: solid 5px transparent;
+            transition: all .3s;
+        }
+
+        .img-responsive.active {
+            border: solid 5px red;
+            box-shadow: 0 0 20px red;
+            transition: all 0s;
+        }
+    </style>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row  mt-1 row-with-gap">
+            <div class="col">
+                <img id="i1" src="../images/1.png" class="img-responsive"/>
+            </div>
+            <div class="col">
+                <img id="i2" src="../images/2.png" class="img-responsive"/>
+            </div>
+            <div class="col">
+                <img id="i3" src="../images/3.png" class="img-responsive"/>
+            </div>
+            <div class="col">
+                <img id="i4" src="../images/4.png" class="img-responsive"/>
+            </div>
+            <div class="col">
+                <img id="i5" src='../images/5.png' class="img-responsive"/>
+            </div>
+            <div class="col">
+                <img id="i6" src="../images/6.png" class="img-responsive"/>
+            </div>
+            <div class="col">
+                <img id="i7" src="../images/1.png" class="img-responsive"/>
+            </div>
+            <div class="col">
+                <img id="i8" src="../images/2.png" class="img-responsive"/>
+            </div>
+            <div class="col">
+                <img id="i9" src="../images/3.png" class="img-responsive"/>
+            </div>
+            <div class="col">
+                <img id="i10" src="../images/4.png" class="img-responsive"/>
+            </div>
+            <div class="col">
+                <img id="i11" src="../images/5.png" class="img-responsive"/>
+            </div>
+            <div class="col">
+                <img id="i12" src="../images/6.png" class="img-responsive"/>
+            </div>
+        </div>
+        <div class="row  mt-4 row-with-gap">
+            <div class="col">
+                <img id="i32" src="../images/5.png" class="img-responsive"/>
+            </div>
+            <div class="col-10"></div>
+            <div class="col">
+                <img id="i13" src="../images/4.png" class="img-responsive"/>
+            </div>
+        </div>
+        <div class="row mt-4 row-with-gap">
+            <div class="col">
+                <img id="i31" src="../images/4.png" class="img-responsive"/>
+            </div>
+            <div class="col-10"></div>
+            <div class="col">
+                <img id="i14" src="../images/3.png" class="img-responsive"/>
+            </div>
+        </div>
+        <div class="row  mt-4 row-with-gap">
+            <div class="col">
+                <img id="i30" src="../images/3.png" class="img-responsive"/>
+            </div>
+            <div class="col-10"></div>
+            <div class="col">
+                <img id="i15" src="../images/2.png" class="img-responsive"/>
+            </div>
+        </div>
+        <div class="row  mt-4 row-with-gap">
+            <div class="col">
+                <img id="i29" src="../images/2.png" class="img-responsive"/>
+            </div>
+            <div class="col-10"></div>
+            <div class="col">
+                <img id="i16" "../images/1.png" class="img-responsive"/>
+            </div>
+        </div>
+        <div class="row  mt-4 row-with-gap">
+            <div class="col">
+                <img id="i28" src="../images/1.png" class="img-responsive"/>
+            </div>
+            <div class="col">
+                <img id="i27" src="../images/6.png" class="img-responsive"/>
+            </div>
+            <div class="col">
+                <img id="i26" src="../images/5.png" class="img-responsive"/>
+            </div>
+            <div class="col">
+                <img id="i25" src="../images/4.png" class="img-responsive"/>
+            </div>
+            <div class="col">
+                <img id="i24" src="../images/3.png" class="img-responsive"/>
+            </div>
+            <div class="col">
+                <img id="i23" src="../images/2.png" class="img-responsive"/>
+            </div>
+            <div class="col">
+                <img id="i22" src="../images/1.png" class="img-responsive"/>
+            </div>
+            <div class="col">
+                <img id="i21" src="../images/6.png" class="img-responsive"/>
+            </div>
+            <div class="col">
+                <img id="i20" src="../images/5.png" class="img-responsive"/>
+            </div>
+            <div class="col">
+                <img id="i19" src="../images/4.png" class="img-responsive"/>
+            </div>
+            <div class="col">
+                <img id="i18" src="../images/3.png" class="img-responsive"/>
+            </div>
+            <div class="col">
+                <img id="i17" src="../images/2.png" class="img-responsive"/>
+            </div>
+        </div>
+        <button type="button" class="btn btn-primary btn-lg btn-block" id="go">GO！</button>
+    </div>
+    <script>
+        var bricks = [];
+        var currentBrick = 0;
+        var forwardSteps = 0;
+        var currentDeg = 0;
+        var stepDeg = 0;
+
+        function init() {
+            var n = 0;
+
+            while (true) {
+                ++n;
+                var brick = document.getElementById("i" + n);
+
+                if (!brick) {
+                    break;
+                }
+
+                brick.src = "https://placehold.it/200?text=" + brick.id;
+                bricks.push(brick);
+            }
+
+            document.getElementById("go").onclick = function () {
+                forwardSteps = (bricks.length * 5);
+                forwardSteps += Math.floor(Math.random() * bricks.length);
+
+                stepDeg = 180 / forwardSteps;
+                currentDeg = 0;
+
+                forwardBrick();
+            }
+        }
+
+        function forwardBrick() {
+            bricks[currentBrick].className = "img-responsive";
+
+            currentBrick++;
+            forwardSteps--;
+            currentDeg += stepDeg;
+
+            if (currentBrick >= bricks.length) {
+                currentBrick = 0;
+            }
+
+            bricks[currentBrick].className = "img-responsive active";
+
+            if (forwardSteps > 0) {
+                var rad = degreeToRadius(currentDeg - 90);
+                var a = Math.abs(Math.tan(rad));
+
+                var speed = Math.max(10, Math.min(250, 30 * a));
+                setTimeout(forwardBrick, speed);
+            }
+        }
+
+        function degreeToRadius(deg) {
+            return deg * Math.PI / 180;
+        }
+
+        init();
+    </script>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
