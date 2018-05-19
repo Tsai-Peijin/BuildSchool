@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>預估交通費用計算</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+
+    <style>
+        .map {
+            width: 900px;
+            height: 700px;
+            
+        }
+    </style>
+</head>
+
+<body style="font-family:微軟正黑體;">
+    <div class="row">
+        <div class="col">
+            <div id="map" class="map"></div>
+        </div>
+        <div class="col">
+            <div class="row">
+                <div class="col">
+                    <button type="button" class="btn btn-Secondary mt-5" id="Car">開車</button>
+                </div>
+                <div class="col">
+                    <button type="button" class="btn btn-Secondary mt-5" id="Taxi">計程車</button>
+                </div>
+                <div class="col">
+                    <button type="button" class="btn btn-Secondary mt-5" id="Bus">大眾交通工具</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="direction" class="directionstyle"></div>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQiX_j1Fz8VfooVbMbQiyVrZy6HlgHbJw&callback=initMap"
+        type="text/javascript">
+        </script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <script>
+        var map;
+        var marker = null;
+        var center = { lat: 24.802243, lng: 120.972354 };
+        var point1 = null, point2 = null;
+        var directionsService = null;
+        var directionsDisplay = null;
+
+        window.onload = function () {
+
+            map = new google.maps.Map(
+                document.getElementById('map'), {
+                    center: center,
+                    zoom: 16
+                });
+
+            directionsService = new google.maps.DirectionsService();
+            directionsDisplay = new google.maps.DirectionsRenderer();
+            directionsDisplay.setMap(map);
+
+            map.addListener("click", function (e) {
+
+                if (point1 != null && point2 != null) {
+                    point1 = null;
+                    point2 = null;
+                }
+
+                if (point1 == null) {
+                    point1 = e.latLng.lat() + ',' + e.latLng.lng();
+                    return;
+                }
+                if (point2 == null) {
+                    point2 = e.latLng.lat() + ',' + e.latLng.lng();
+                }
+
+                console.log(point1);
+                console.log(point2);
+
+
+                //------------開車--------------
+                if (point1 != null && point2 != null) {
+                    // calculate direction for 2 points.
+                    directionsService.route({
+                        origin: point1,
+                        destination: point2,
+                        travelMode: 'DRIVING'
+                    }, function (response, status) {
+                        console.log(response);
+                        var car = document.getElementById("Car");
+                        var totalpriceCar = 0;
+
+
+                        for (var i = 0; i <= response.routes[0].legs[0].steps.length - 1; i++) {
+                            if (response.routes[0].legs[0].steps[i].instructions.indexOf("收費路段")) {
+                                totalpriceCar += (response.routes[0].legs[0].steps[i].distance.value / 1000) * 6.2;
+                            }
+                            else {
+                                totalpriceCar += (response.routes[0].legs[0].steps[i].distance.value / 1000) * 5;
+                            }
+                        }
+                        car.innerHTML = "開車" + "<br/>" + "總公里數：" + response.routes[0].legs[0].distance.text + "<br/>" + "時間：" + response.routes[0].legs[0].duration.text + "<br/>" + "費用：" + Math.round(totalpriceCar) + "元" + "<br/>";
+                        if (status === 'OK') {
+                            directionsDisplay.setDirections(response);
+                        } else {
+                            window.alert('Directions request failed due to ' + status);
+                        }
+                    });
+                }
+                //------------計程車--------------
+                if (point1 != null && point2 != null) {
+                    // calculate direction for 2 points.
+                    directionsService.route({
+                        origin: point1,
+                        destination: point2,
+                        travelMode: 'DRIVING'
+                    }, function (response, status) {
+                        console.log(response);
+                        var Taxi = document.getElementById("Taxi");
+                        var totalpriceTaxi = 0;
+                        var km = response.routes[0].legs[0].distance.value / 1000
+
+                        for (var i = 0; i <= response.routes[0].legs[0].steps.length - 1; i++) {
+                            if (response.routes[0].legs[0].steps[i].instructions.indexOf("收費路段")) {
+                                totalpriceTaxi += (response.routes[0].legs[0].steps[i].distance.value / 1000) * 1.2;
+                            }
+                        }
+
+                        if (km <= 1.5) {
+                            totalpriceTaxi += 85;
+                            Taxi.innerHTML = "計程車" + "<br/>" + "總公里數：" + response.routes[0].legs[0].distance.text + "<br/>" + "時間：" + response.routes[0].legs[0].duration.text + "<br/>" + "費用:" + Math.round(totalpriceTaxi) + "元" + "<br/>";
+                        }
+                        else if (km > 1.5) {
+                            totalpriceTaxi += (85 + ((km - 1.5) / 0.25) * 5);
+                            Taxi.innerHTML = "計程車" + "<br/>" + "總公里數：" + response.routes[0].legs[0].distance.text + "<br/>" + "時間：" + response.routes[0].legs[0].duration.text + "<br/>" + "費用：" + Math.round(totalpriceTaxi) + "元" + "<br/>";
+                        }
+
+                        if (status === 'OK') {
+                            directionsDisplay.setDirections(response);
+                        } else {
+                            window.alert('Directions request failed due to ' + status);
+                        }
+                    });
+                }
+                //------------大眾運輸--------------
+                if (point1 != null && point2 != null) {
+                    // calculate direction for 2 points.
+                    directionsService.route({
+                        origin: point1,
+                        destination: point2,
+                        travelMode: 'TRANSIT'
+                    }, function (response, status) {
+                        console.log(response);
+                        var bus = document.getElementById("Bus");
+                        if (status === 'OK') {
+                            directionsDisplay.setDirections(response);
+                        } else {
+                            window.alert('Directions request failed due to ' + status);
+                        }
+                        bus.innerHTML = "大眾交通工具" + "<br/>" + "時間：" + response.routes[0].legs[0].duration.text + "<br/>" + "費用：" + response.routes[0].fare.text;
+                    });
+                }
+                //------------結束------------------
+            });
+        }
+    </script>
+</body>
+
+</html>
