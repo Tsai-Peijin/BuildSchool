@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+        crossorigin="anonymous">
+    <style>
+        #thead {
+            background-color: #CCEEFF;
+        }
+
+        #mouths {
+            font-size: 22px;
+            color: #000000;
+            font-weight: bold;
+        }
+
+        .display {
+            background-color: #DDDDDD;
+            color: #000000;
+            border: 0ch;
+        }
+
+        .display:hover {
+            color: #000000;
+            background: #CCEEFF;
+        }
+
+        .unshow {
+            color: #000000;
+            background-color: #DDDDDD;
+        }
+
+        .table thead th {
+            vertical-align: bottom;
+            border-bottom: 2px solid #AAAAAA;
+        }
+
+        .table-bordered td,
+        .table-bordered th {
+            border: 1px solid #AAAAAA;
+        }
+
+        td {
+            text-align: start;
+            border: 0.01em solid #000000;
+            border-spacing: 0px;
+            padding: 6px;
+            width: 500px;
+            height: 130px;
+            font-size: 15px;
+        }
+
+        .btn-block {
+            background-color: rgba(255, 255, 255, 0);
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        li {
+            font-size: 12px;
+            padding: 0 5px;
+            text-align: center;
+        }
+
+        #map {
+            width: 100%;
+            height: 200px;
+        }
+
+        #limap {
+            width: 100%;
+            height: 200px;
+        }
+    </style>
+</head>
+
+<body style="font-family:微軟正黑體;">
+    <div class="container">
+        <div class="row mt-4">
+            <div class="col-2">
+                <button type="button" class="btn btn-light display" id="lastmonth">
+                    <i class="fas fa-angle-left"></i>
+                </button>
+            </div>
+            <div class="col-8 text-center">
+                <span class="text-center mr-2" id="mouths"></span>
+                <button type="button" class="btn display" data-toggle="modal" data-target="#asd">新增事項</button>
+            </div>
+            <div class="col-2 text-right">
+                <button type="button" class="btn btn-light display" id="nextmonth">
+                    <i class="fas fa-angle-right"></i>
+                </button>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col">
+                <table class="table table-bordered text-center" id="dateZone">
+                    <thead>
+                        <tr id="thead">
+                            <th>SUN</th>
+                            <th>MON</th>
+                            <th>TUE</th>
+                            <th>WED</th>
+                            <th>THU</th>
+                            <th>FRI</th>
+                            <th>SAT</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dateTable">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id="asd" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">新增事件</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="userday">日期：</label>
+                                <input type="date" class="form-control" name="userday" id="userday" aria-describedby="helpId">
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="fromHR">開始時間：</label>
+                                    <input type="time" class="form-control" name="fromHR" id="fromHR" aria-describedby="helpId">
+                                </div>
+                                <div class="col">
+                                    <label for="toHR">結束時間：</label>
+                                    <input type="time" class="form-control" name="toHR" id="toHR" aria-describedby="helpId">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject" class="col-form-label">事件 :</label>
+                                <textarea class="form-control" id="subject"></textarea>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="useradress">地址 :</label>
+                                    <input type="input" class="form-control" name="evenaddress" id="useraddress" aria-describedby="helpId" placeholder="請在地圖上點選."
+                                        disabled>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="usercolor">顏色 :</label>
+                                <input type="color" class="form" name="usercolor" id="usercolor" aria-describedby="helpId" placeholder="為這資料給個顏色">
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary" id="datainput">確認</button>
+                    </div>
+                    <div id="map">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="lidata" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">編輯事件</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="liuserday">日期：</label>
+                                <input type="input" class="form-control" name="liuserday" id="liuserday" aria-describedby="helpId" disabled>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="lifromHR">開始時間：</label>
+                                    <input type="time" class="form-control" name="lifromHR" id="lifromHR" aria-describedby="helpId">
+                                </div>
+                                <div class="col">
+                                    <label for="litoHR">結束時間：</label>
+                                    <input type="time" class="form-control" name="litoHR" id="litoHR" aria-describedby="helpId">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="lisubject" class="col-form-label">事件 :</label>
+                                <textarea class="form-control" id="lisubject"></textarea>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="liaddress">地址 :</label>
+                                    <input type="input" class="form-control" name="liaddress" id="liaddress" aria-describedby="helpId" placeholder="請在地圖上點選."
+                                        disabled>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="liusercolor">顏色 :</label>
+                                <input type="color" class="form-control" name="liusercolor" id="liusercolor" aria-describedby="helpId" placeholder="為這資料給個顏色">
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary" id="lichange">修改</button>
+                        <button type="button" class="btn btn-danger" id="liremove">刪除</button>
+                    </div>
+                    <div id="limap"></div>
+                </div>
+            </div>
+        </div>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjYa2lWEDFEOGah0x1xBcIc-km4rg7B3Y&callback=initMap" async
+            defer></script>
+        <script type="text/javascript">
+            var map = null;
+            var marker = null;
+            var center = { lat: 24.7571075, lng: 120.952429 };
+            window.onload = function () {
+                map = new google.maps.Map(document.getElementById('map'), {
+                    center: center,
+                    zoom: 15
+                });
+
+                map.addListener('click', function (e) {
+                    map.setCenter(e.latLng);
+
+                    if (marker != null) {
+                        marker.setMap(null);
+                        marker = null;
+                    }
+                    marker = new google.maps.Marker({
+                        position: e.latLng,
+                        map: map,
+                        title: e.latLng.toString()
+                    });
+                    var geocoder = new google.maps.Geocoder();
+                    geocoder.geocode({ 'latLng': marker.position }, function (results, status) {
+                        if (status === google.maps.GeocoderStatus.OK) {
+                            if (results) {
+                                console.log(results[0].formatted_address);
+                                document.getElementById("useraddress").value = results[0].formatted_address;
+                            }
+                        }
+                        else {
+                            alert("Reverse Geocoding failed because: " + status);
+                        }
+                    });
+                });
+            }
+            var month = new Array();
+            month[0] = "January";
+            month[1] = "February";
+            month[2] = "March";
+            month[3] = "April";
+            month[4] = "May";
+            month[5] = "June";
+            month[6] = "July";
+            month[7] = "August";
+            month[8] = "September";
+            month[9] = "October";
+            month[10] = "November";
+            month[11] = "December";
+            var today = new Date();
+            var thismonth = today.getMonth();
+            document.getElementById("mouths").innerHTML = today.getFullYear() + '<br>' + month[thismonth] + '<br>';
+
+
+            var calendar = function (x) {
+                var getmonthdays = function (x) {
+                    var days = new Date(x);
+                    var years = days.getFullYear();
+                    var mouths = days.getMonth() + 1;
+                    var todays = new Date(years, mouths, 0);
+                    return todays;
+                }
+                var getfirstdays = function (x) {
+                    var days = new Date(x);
+                    days.setDate(1);
+                    var todays = days.getDay();
+                    return todays;
+                }
+                var getweek = function (x) {
+                    var days = new Date(x);
+                    var daysmouth = days.getMonth();
+                    var firstday = getfirstdays(x);
+                    var lastday = getmonthdays(x);
+                    if (daysmouth == 1 && firstday == 0 && lastday % 7 == 0) {
+                        return 4
+                    } else {
+                        if (firstday == 5 && lastday % 7 == 3) {
+                            return 6;
+                        } else if (firstday == 6) {
+                            return 6;
+                        } else {
+                            return 5;
+                        }
+                    }
+                }
+                var days = new Date(x);
+                var monthdays = getmonthdays(x);
+                var firstdays = getfirstdays(x);
+                var week = getweek(x);
+                days.setDate(1);
+                var k = 0, a = 0, b = 0, c = 0;
+                for (var i = 0; i < week; i++) {
+                    var newRow = document.createElement("tr");
+                    for (var j = 0; j < 7; j++) {
+
+                        var newDate = document.createElement("td");
+                        var ul = document.createElement("ul");
+                        if (a < firstdays) {
+                            a++;
+                            var tempDate = new Date(days);
+                            tempDate.setDate(a - firstdays);
+                            newDate.className = "unshow";
+                            newDate.innerText = tempDate.getDate();
+                        }
+                        else if (b < monthdays.getDate()) {
+                            b++;
+                            newDate.className = "show";
+                            newDate.innerText = new Date(days).getDate();
+                            days.setDate(b + 1);
+                        }
+                        else if (c < (6 - monthdays.getDay())) {
+                            c++;
+                            newDate.className = "unshow";
+                            newDate.innerText = new Date(days).getDate();
+                            days.setDate(days.getDate() + 1);
+                        }
+                        ul.id = month[new Date(days).getMonth()] + newDate.innerText;
+                        newDate.appendChild(ul);
+                        newRow.appendChild(newDate);
+                    }
+                    dateTable.appendChild(newRow);
+                }
+            }
+            calendar(today);
+
+            document.getElementById("lastmonth").onclick = function () {
+                document.getElementById("dateTable").innerHTML = "";
+                thismonth--;
+                var newdate = new Date(2018, thismonth, 15);
+                document.getElementById("mouths").innerText = newdate.getFullYear() + '\n' + month[newdate.getMonth()] + '\n';
+                calendar(newdate);
+                lidata();
+            }
+            document.getElementById("nextmonth").onclick = function () {
+                document.getElementById("dateTable").innerHTML = "";
+                thismonth++;
+                var newdate = new Date(2018, thismonth, 15);
+                document.getElementById("mouths").innerText = today.getFullYear() + '\n' + month[newdate.getMonth()] + '\n';
+                calendar(newdate);
+                lidata();
+            }
+            //資料結構
+            if (typeof (Storage) !== "undefined") {
+                console.log("Code for localStorage/sessionStorage.");
+            } else {
+                console.log("Sorry! No Web Storage support..");
+            }
+            document.getElementById("datainput").onclick = function () {
+                schedule();
+            }
+
+            var schedule = function () {
+                function _uuid() {
+                    var d = Date.now();
+                    if (typeof performance !== 'undefined' && typeof performance.now === 'function') {
+                        d += performance.now();
+                    }
+                    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                        var r = (d + Math.random() * 16) % 16 | 0;
+                        d = Math.floor(d / 16);
+                        return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+                    });
+                }
+                var key = _uuid();
+                var userday = new Date(document.getElementById("userday").value);
+                var scheduleItem = {
+                    userday: month[userday.getMonth()] + userday.getDate(),
+                    fromHR: document.getElementById("fromHR").value,
+                    toHR: document.getElementById("toHR").value,
+                    subject: document.getElementById("subject").value,
+                    color: document.getElementById("usercolor").value,
+                    address: document.getElementById("useraddress").value
+                };
+                var obj = JSON.stringify(scheduleItem);
+                localStorage.setItem(key, obj);
+                console.log("存檔成功");
+                document.getElementById("dateTable").innerHTML = "";
+                var newdate = new Date(2018, thismonth, 15);
+                calendar(newdate);
+                lidata();
+            }
+
+            var finallydata = function () {
+                var li = event.srcElement;
+                console.log(li.id);
+                document.getElementById("liuserday").value = JSON.parse(localStorage[li.id]).userday;
+                document.getElementById("lifromHR").value = JSON.parse(localStorage[li.id]).fromHR;
+                document.getElementById("litoHR").value = JSON.parse(localStorage[li.id]).toHR;
+                document.getElementById("lisubject").value = JSON.parse(localStorage[li.id]).subject;
+                document.getElementById("liusercolor").value = JSON.parse(localStorage[li.id]).color;
+                document.getElementById("liaddress").value = JSON.parse(localStorage[li.id]).address;
+                var liadress = document.getElementById("liaddress").value;
+
+                var geocoder = new google.maps.Geocoder();
+                var ReadLatlng = { lat: null, lng: null };
+                geocoder.geocode({ address: liadress }, function (result, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+
+                        var location = result[0].geometry.location;
+                        console.log(location.lat());
+                        console.log(location.lng());
+
+                        var limap = new google.maps.Map(document.getElementById('limap'), {
+                            center: { lat: location.lat(), lng: location.lng() },
+                            zoom: 15
+                        });
+                        var markerr = new google.maps.Marker({
+                            position: { lat: location.lat(), lng: location.lng() },
+                            map: limap,
+                            title: liadress
+                        });
+                    } else {
+                        alert('解析失敗!回傳狀態為：' + status);
+                    }
+                });
+                document.getElementById("lichange").onclick = function () {
+                    var scheduleItem = {
+                        userday: JSON.parse(localStorage[li.id]).userday,
+                        fromHR: document.getElementById("lifromHR").value,
+                        toHR: document.getElementById("litoHR").value,
+                        subject: document.getElementById("lisubject").value,
+                        color: document.getElementById("liusercolor").value,
+                        address: document.getElementById("liaddress").value
+                    };
+                    var obj = JSON.stringify(scheduleItem);
+                    localStorage.setItem(li.id, obj);
+                    console.log("修改成功");
+                    document.getElementById("dateTable").innerHTML = "";
+                    var newdate = new Date(2018, thismonth, 15);
+                    calendar(newdate);
+                    lidata();
+                }
+                document.getElementById("liremove").onclick = function () {
+                    localStorage.removeItem(li.id);
+                    console.log("刪除成功");
+                    document.getElementById("dateTable").innerHTML = "";
+                    var newdate = new Date(2018, thismonth, 15);
+                    calendar(newdate);
+                    lidata();
+                }
+            }
+
+            var lidata = function () {
+                for (var item in localStorage) {
+                    var newschedule = JSON.parse(localStorage[item]);
+                    var z = document.getElementById(newschedule.userday);
+                    if (z == null) {
+
+                    } else if (z.id == newschedule.userday) {
+                        var li = document.createElement("li");
+                        li.id = item;
+                        li.className = "myli rounded";
+                        li.setAttribute("data-toggle", "modal");
+                        li.setAttribute("data-target", "#lidata");
+                        li.setAttribute("onclick", "finallydata()");
+                        li.style = "background-color:" + newschedule.color;
+                        li.innerHTML = newschedule.fromHR + "  " + newschedule.subject.toString();
+                        console.log(li);
+                        z.appendChild(li);
+                    }
+                }
+
+            }
+            lidata();
+        </script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+</body>
+
+</html>
