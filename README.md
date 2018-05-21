@@ -10,6 +10,15 @@
 #### \# 網站刻板練習
 ![Screenshot](https://github.com/Tsai-Peijin/BuildSchool2018/blob/master/HTML/images/paw-news.png?raw=true)  
 
+#### \# 行事曆  
+![Screenshot](https://github.com/Tsai-Peijin/BuildSchool2018/blob/master/HTML/images/%E8%A1%8C%E4%BA%8B%E6%9B%86.png?raw=true)  
+
+#### \# 里程計算  
+![Screenshot](https://github.com/Tsai-Peijin/BuildSchool2018/blob/master/HTML/images/%E9%87%8C%E7%A8%8B%E8%A8%88%E7%AE%97.png?raw=true)  
+
+#### \# 小瑪莉
+![Screenshot](https://github.com/Tsai-Peijin/BuildSchool2018/blob/master/HTML/images/%E5%B0%8F%E7%91%AA%E8%8E%89.png?raw=true)  
+
 #### \# 溫度轉換器
 ![Screenshot](https://github.com/Tsai-Peijin/BuildSchool2018/blob/master/HTML/images/%E6%BA%AB%E5%BA%A6%E8%BD%89%E6%8F%9B%E5%99%A8.png?raw=true)  
 
