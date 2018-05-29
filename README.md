@@ -1,5 +1,6 @@
 
 ## HTML練習
+利用 bootstrap 元件及 CSS 練習頁面排版，並使用JavaScript 及 jQuery 增加網頁的互動性。
 
 #### \# Bootstrap刻板練習
 ![Screenshot](https://github.com/Tsai-Peijin/BuildSchool2018/blob/master/HTML/images/Wireframe.png?raw=true)  
@@ -25,14 +26,8 @@
 #### \# 猜數字(1A2B)
 ![Screenshot](https://github.com/Tsai-Peijin/BuildSchool2018/blob/master/HTML/images/%E7%8C%9C%E6%95%B8%E5%AD%97(1A2B).png?raw=true)  
 
-#### \# 終極密碼
-![Screenshot](https://github.com/Tsai-Peijin/BuildSchool2018/blob/master/HTML/images/%E7%B5%82%E6%A5%B5%E5%AF%86%E7%A2%BC.png?raw=true)  
-
 #### \# 打地鼠
 ![Screenshot](https://github.com/Tsai-Peijin/BuildSchool2018/blob/master/HTML/images/%E6%89%93%E5%9C%B0%E9%BC%A0.png?raw=true)  
-
-#### \# 累進稅率
-![Screenshot](https://github.com/Tsai-Peijin/BuildSchool2018/blob/master/HTML/images/%E7%B4%AF%E9%80%B2%E7%A8%85%E7%8E%87.png?raw=true)  
 
 #### \# 貸款試算
 ![Screenshot](https://github.com/Tsai-Peijin/BuildSchool2018/blob/master/HTML/images/%E8%B2%B8%E6%AC%BE%E8%A9%A6%E7%AE%97.png?raw=true)
