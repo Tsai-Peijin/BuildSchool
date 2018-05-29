@@ -23,7 +23,7 @@
 
 #### \# 行事曆  
 * 利用 Bootstrap 元件練習頁面排版。
-* 加入CSS與JavaScript讓網頁有互動性。
+* 加入CSS與JavaScript讓網頁有色彩與互動性。
 * 利用LocalStorage存取資料。
 * 加入GoogleAPI 可以讓使用者存取所在地。
 * https://buildschooltest.azurewebsites.net/HTML/Calendar/index.html  
@@ -49,5 +49,8 @@
 
 ![Screenshot](https://github.com/Tsai-Peijin/BuildSchool2018/blob/master/HTML/images/%E6%99%AF%E9%BB%9E.png?raw=true)  
 
-#### \# 貸款試算
+#### \# 貸款試算  
+* 使用者可以輸入貸款金額、年利率與月份數後會計算利息與償還金額。
+* https://buildschooltest.azurewebsites.net/HTML/Loan%20calculation/  
+* 
 ![Screenshot](https://github.com/Tsai-Peijin/BuildSchool2018/blob/master/HTML/images/%E8%B2%B8%E6%AC%BE%E8%A9%A6%E7%AE%97.png?raw=true)
