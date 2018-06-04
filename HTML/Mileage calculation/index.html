@@ -171,7 +171,7 @@
                         } else {
                             window.alert('Directions request failed due to ' + status);
                         }
-                        bus.innerHTML = "大眾交通工具" + "<br/>" + "時間：" + response.routes[0].legs[0].duration.text + "<br/>" + "費用：" + response.routes[0].fare.text;
+                        bus.innerHTML = "大眾交通工具" + "<br/>" + "時間：" + response.routes[0].legs[0].duration.text + "<br/>" + "費用：" + response.routes[0].fare.text + "元";
                     });
                 }
                 //------------結束------------------
