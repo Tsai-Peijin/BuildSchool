@@ -7,14 +7,15 @@
 * https://buildschooltest.azurewebsites.net/HTML/shopee/shopee.html  
 
 ![Screenshot](https://github.com/Tsai-Peijin/BuildSchool2018/blob/master/HTML/images/shopee-1.PNG?raw=true)  
----
 
+----
 #### \# BuildSchool網站刻板練習  
 * 利用 Bootstrap 元件練習頁面排版。
 * https://buildschooltest.azurewebsites.net/HTML/Stereotype%20practice/bs/  
 
-![Screenshot](https://github.com/Tsai-Peijin/BuildSchool2018/blob/master/HTML/images/BuildSchool.png?raw=true)  
----
+![Screenshot](https://github.com/Tsai-Peijin/BuildSchool2018/blob/master/HTML/images/BuildSchool.png?raw=true) 
+
+----
 #### \# 網站刻板練習  
 * 利用 Bootstrap 元件練習頁面排版。
 * 加入CSS 增加頁面的豐富度。
