@@ -14,10 +14,31 @@
 </head>
 
 <body>
-    <div id="map" style="width:1000px; height:700px">
+    <div class="row mt-2">
+        <div class="col" style="text-align: center;">
+            <h2>新竹市觀光景點美食</h2>
+        </div>
     </div>
+    <div class="container">
+        <div class="row mt-1">
+            <div class="col-9">
+                <div id="map" style="width:800px; height:650px">
+                </div>
+            </div>
+            <div class="col">
+                <p>
+                    <img src="https://png.icons8.com/metro/20/apartment.png" alt="">&ensp;合法旅館</p>
+                <p>
+                    <img src="https://png.icons8.com/dusk/20/food.png" alt="">&ensp;非吃不可美食</p>
+                <p>
+                    <img src="https://cdn0.iconfinder.com/data/icons/kameleon-free-pack-rounded/110/Camera-Front-20.png" alt="">&ensp;觀光景點</p>
+            </div>
+        </div>
+    </div>
+
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZEn75F0FbqlZLWBRbxq4sf3PXkHPMEjk" async defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 
     <script type="text/javascript">
         var map = null;
@@ -180,6 +201,7 @@
         };
 
     </script>
+
 </body>
 
 </html>
