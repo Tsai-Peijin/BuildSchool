@@ -9,21 +9,21 @@
 
 ----
 ### \# [BuildSchool網站刻板練習](https://buildschooltest.azurewebsites.net/Stereotype%20practice/bs/)  
->* 利用 Bootstrap 元件練習頁面排版。
+>* 利用 Bootstrap 前端框架練習頁面排版。
 
 ![Screenshot](https://github.com/Tsai-Peijin/BuildSchool2018/blob/master/images/bs.PNG?raw=true) 
 
 ----
 ### \# [網站刻板練習](https://buildschooltest.azurewebsites.net/Stereotype%20practice/paw-news/)  
 
->* 利用 Bootstrap 元件練習頁面排版。
+>* 利用 Bootstrap 前端框架練習頁面排版。
 >* 加入CSS 增加頁面的豐富度。  
 
 ![Screenshot](https://github.com/Tsai-Peijin/BuildSchool2018/blob/master/images/paw-news.png?raw=true)  
 
 ---
 ### \# [行事曆](https://buildschooltest.azurewebsites.net/Calendar/index.html)  
->* 利用 Bootstrap 元件練習頁面排版。
+>* 利用 Bootstrap 前端框架練習頁面排版。
 >* 加入CSS與JavaScript讓網頁有色彩與互動性。
 >* 利用LocalStorage存取資料。
 >* 加入GoogleAPI 可以讓使用者存取所在地。
@@ -38,7 +38,7 @@
 
 ---
 ### \# [小瑪莉](https://buildschooltest.azurewebsites.net/Slot%20machine/)
->* 利用 Bootstrap 元件練習頁面排版。
+>* 利用 Bootstrap 前端框架練習頁面排版。
 >* 運用 JavaScript 的計算能力得到結果。
 
 ![Screenshot](https://github.com/Tsai-Peijin/BuildSchool2018/blob/master/images/%E5%B0%8F%E7%91%AA%E8%8E%89.png?raw=true)  
