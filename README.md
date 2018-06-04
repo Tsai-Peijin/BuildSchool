@@ -2,7 +2,7 @@
 ## HTML練習
 
 
-### \# [shopee刻板練習](https://buildschooltest.azurewebsites.net/HTML/shopee/shopee.html  )
+### \# [shopee刻板練習](https://buildschooltest.azurewebsites.net/HTML/shopee/shopee.html)
 * 利用 Bootstrap 元件練習頁面排版。
 
 ![Screenshot](https://github.com/Tsai-Peijin/BuildSchool2018/blob/master/HTML/images/shopee-1.PNG?raw=true)  
