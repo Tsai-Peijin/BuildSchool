@@ -15,26 +15,33 @@
         .map {
             width: 900px;
             height: 700px;
-            
+
         }
     </style>
 </head>
 
 <body style="font-family:微軟正黑體;">
-    <div class="row">
-        <div class="col">
-            <div id="map" class="map"></div>
+    <div class="container-fluid">
+        <div class="row mt-3">
+            <div class="col" style="text-align: center;">
+                <h2>里程計算</h2>
+            </div>
         </div>
-        <div class="col">
-            <div class="row">
-                <div class="col">
-                    <button type="button" class="btn btn-Secondary mt-5" id="Car">開車</button>
-                </div>
-                <div class="col">
-                    <button type="button" class="btn btn-Secondary mt-5" id="Taxi">計程車</button>
-                </div>
-                <div class="col">
-                    <button type="button" class="btn btn-Secondary mt-5" id="Bus">大眾交通工具</button>
+        <div class="row">
+            <div class="col-7">
+                <div id="map" style="width:800px; height:650px"></div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <button type="button" class="btn btn-Secondary mt-3" id="Car">開車</button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn btn-Secondary mt-3" id="Taxi">計程車</button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn btn-Secondary mt-3" id="Bus">大眾交通工具</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -174,7 +181,6 @@
                         bus.innerHTML = "大眾交通工具" + "<br/>" + "時間：" + response.routes[0].legs[0].duration.text + "<br/>" + "費用：" + response.routes[0].fare.text + "元";
                     });
                 }
-                //------------結束------------------
             });
         }
     </script>
