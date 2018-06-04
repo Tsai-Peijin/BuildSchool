@@ -17,7 +17,8 @@
 ### \# [網站刻板練習](https://buildschooltest.azurewebsites.net/Stereotype%20practice/paw-news/)  
 
 >* 利用 Bootstrap 元件練習頁面排版。
->* 加入CSS 增加頁面的豐富度。
+>* 加入CSS 增加頁面的豐富度。  
+
 ![Screenshot](https://github.com/Tsai-Peijin/BuildSchool2018/blob/master/images/paw-news.png?raw=true)  
 
 ---
